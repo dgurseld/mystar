@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Star — Gökyüzündeki Bağ</title>
+  <title>My Star</title>
   <meta property="og:title" content="My Star — Sana bir yıldız geldi" />
   <meta property="og:description" content="Bir not, bir gülümseme, bir hatırlama… Belki de aklımdasın demenin en zarif yolu." />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #07071a;
-      color: #fff;
+      background: #07071a; color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 40px 24px;
     }
+    .lang-switch { position: fixed; top: 20px; right: 20px; display: flex; gap: 8px; }
+    .lang-btn { background: none; border: 1px solid #1e1e4a; color: #3a4a6a; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .lang-btn.active { border-color: #c9a96e; color: #c9a96e; }
     .star { font-size: 56px; margin-bottom: 14px; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
     .app-name { color: #c9a96e; font-size: 26px; font-weight: 800; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; }
     .tagline { color: #6b8aad; font-size: 14px; margin-bottom: 12px; text-align: center; max-width: 320px; line-height: 1.7; }
     .desc { color: #3a4a6a; font-size: 13px; text-align: center; max-width: 300px; line-height: 1.8; margin-bottom: 36px; }
     .divider { width: 32px; height: 1px; background: rgba(201,169,110,0.3); margin: 0 auto 20px; }
-    .card {
-      background: #0d0d24; border: 1px solid #c9a96e;
-      border-radius: 24px; padding: 28px 24px;
-      width: 100%; max-width: 360px; text-align: center; margin-bottom: 20px;
-    }
+    .card { background: #0d0d24; border: 1px solid #c9a96e; border-radius: 24px; padding: 28px 24px; width: 100%; max-width: 360px; text-align: center; margin-bottom: 20px; }
     .gift-icon { font-size: 32px; margin-bottom: 10px; }
     .star-name { color: #c9a96e; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
     .dedication { color: rgba(200,180,255,0.7); font-size: 13px; margin-bottom: 10px; }
@@ -40,15 +34,20 @@
     #status { color: #4a6a8a; font-size: 12px; margin-bottom: 14px; text-align: center; min-height: 18px; }
     .footer { color: #1e2d3d; font-size: 11px; margin-top: 36px; text-align: center; }
     .footer a { color: #3a4a6a; text-decoration: none; }
-    .no-star { display: none; }
   </style>
 </head>
 <body>
+
+  <div class="lang-switch">
+    <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">TR</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  </div>
+
   <div class="star">✦</div>
   <div class="app-name">My Star</div>
-  <div class="tagline">Sevdiklerinle bağ kurmanın en güzel yolu.</div>
+  <div class="tagline" id="tagline"></div>
   <div class="divider"></div>
-  <div class="desc" id="homeDesc">Bir not, bir gülümseme, bir hatırlama…<br>Belki de "aklımdasın" demenin en zarif yolu.</div>
+  <div class="desc" id="desc"></div>
 
   <div class="card" id="starCard" style="display:none">
     <div class="gift-icon">🎁</div>
@@ -59,20 +58,42 @@
 
   <div id="status"></div>
 
-  <button class="btn btn-primary" id="openBtn" style="display:none" onclick="openInApp()">
-    Uygulamada Aç ✦
-  </button>
-  <a class="btn btn-secondary" id="downloadBtn"
-    href="https://apps.apple.com/app/id000000000"
-    style="display:none">
-    App Store'dan İndir
-  </a>
+  <button class="btn btn-primary" id="openBtn" style="display:none" onclick="openInApp()"></button>
+  <a class="btn btn-secondary" id="downloadBtn" href="https://apps.apple.com/app/id000000000" style="display:none" id="downloadBtn"></a>
 
   <div class="footer">
-    <a href="https://getmystar.app/privacy">Gizlilik Politikası</a> · getmystar.app · 2026
+    <a href="https://getmystar.app/privacy" id="privacyLink"></a> · getmystar.app · 2026
   </div>
 
   <script>
+    const strings = {
+      tr: {
+        tagline: 'Sevdiklerinle bağ kurmanın en güzel yolu.',
+        desc: 'Bir not, bir gülümseme, bir hatırlama…\nBelki de "aklımdasın" demenin en zarif yolu.',
+        openBtn: 'Uygulamada Aç ✦',
+        downloadBtn: "App Store'dan İndir",
+        privacy: 'Gizlilik Politikası',
+        opening: 'Uygulama açılıyor...',
+        notFound: 'Uygulama bulunamadı:',
+        retry: 'Tekrar Dene ✦',
+        opened: '✦ Uygulama açıldı!',
+      },
+      en: {
+        tagline: 'The most beautiful way to connect with the ones you love.',
+        desc: 'A note, a smile, a memory…\nPerhaps the most elegant way to say "I\'m thinking of you."',
+        openBtn: 'Open in App ✦',
+        downloadBtn: 'Download on App Store',
+        privacy: 'Privacy Policy',
+        opening: 'Opening app...',
+        notFound: 'App not found:',
+        retry: 'Try Again ✦',
+        opened: '✦ App opened!',
+      }
+    };
+
+    let currentLang = 'tr';
+    let appOpened = false;
+
     const params = new URLSearchParams(window.location.search);
     const name = decodeURIComponent(params.get('name') || '');
     const az = params.get('az') || '0';
@@ -82,8 +103,59 @@
     const ra = params.get('ra') || '';
     const dec = params.get('dec') || '';
 
+    const deepLink = 'mystar://find?name=' + encodeURIComponent(name) +
+      '&az=' + az + '&alt=' + alt +
+      '&ded=' + encodeURIComponent(ded) +
+      '&note=' + encodeURIComponent(note) +
+      '&ra=' + ra + '&dec=' + dec;
+
+    function setLang(lang) {
+      currentLang = lang;
+      const s = strings[lang];
+
+      document.getElementById('tagline').textContent = s.tagline;
+      document.getElementById('desc').innerHTML = s.desc.replace('\n', '<br>');
+      document.getElementById('privacyLink').textContent = s.privacy;
+      document.getElementById('btn-tr').className = 'lang-btn' + (lang === 'tr' ? ' active' : '');
+      document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+
+      const openBtn = document.getElementById('openBtn');
+      const dlBtn = document.getElementById('downloadBtn');
+      if (openBtn) openBtn.textContent = s.openBtn;
+      if (dlBtn) dlBtn.textContent = s.downloadBtn;
+
+      document.documentElement.lang = lang;
+      localStorage.setItem('mystar_lang', lang);
+    }
+
+    function openInApp() {
+      const s = strings[currentLang];
+      document.getElementById('status').textContent = s.opening;
+      window.location.href = deepLink;
+      setTimeout(() => {
+        if (!appOpened) {
+          document.getElementById('status').textContent = s.notFound;
+          document.getElementById('downloadBtn').style.display = 'block';
+          document.getElementById('openBtn').textContent = s.retry;
+        }
+      }, 2500);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        appOpened = true;
+        document.getElementById('status').textContent = strings[currentLang].opened;
+      }
+    });
+
+    // Başlangıç
+    const savedLang = localStorage.getItem('mystar_lang');
+    const browserLang = navigator.language?.substring(0, 2) || 'en';
+    const initLang = savedLang || (browserLang === 'tr' ? 'tr' : 'en');
+    setLang(initLang);
+
     if (name) {
-      document.getElementById('homeDesc').style.display = 'none';
+      document.getElementById('desc').style.display = 'none';
       document.getElementById('starCard').style.display = 'block';
       document.getElementById('starName').textContent = name;
       document.getElementById('openBtn').style.display = 'block';
@@ -93,36 +165,8 @@
         el.textContent = '"' + note + '"';
         el.style.display = 'block';
       }
+      setTimeout(openInApp, 700);
     }
-
-    const deepLink = 'mystar://find?name=' + encodeURIComponent(name) +
-      '&az=' + az + '&alt=' + alt +
-      '&ded=' + encodeURIComponent(ded) +
-      '&note=' + encodeURIComponent(note) +
-      '&ra=' + ra + '&dec=' + dec;
-
-    let appOpened = false;
-
-    function openInApp() {
-      document.getElementById('status').textContent = 'Uygulama açılıyor...';
-      window.location.href = deepLink;
-      setTimeout(() => {
-        if (!appOpened) {
-          document.getElementById('status').textContent = 'Uygulama bulunamadı:';
-          document.getElementById('downloadBtn').style.display = 'block';
-          document.getElementById('openBtn').textContent = 'Tekrar Dene ✦';
-        }
-      }, 2500);
-    }
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        appOpened = true;
-        document.getElementById('status').textContent = '✦ Uygulama açıldı!';
-      }
-    });
-
-    if (name) setTimeout(openInApp, 700);
   </script>
 </body>
 </html>
