@@ -1,90 +1,105 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Star — Gizlilik Politikası</title>
+  <title>My Star — Privacy Policy</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #07071a;
-      color: #fff;
+      background: #07071a; color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      padding: 48px 24px;
-      max-width: 680px;
-      margin: 0 auto;
-      line-height: 1.8;
+      padding: 48px 24px; max-width: 680px; margin: 0 auto; line-height: 1.8;
     }
     .star { font-size: 40px; margin-bottom: 12px; display: block; }
     h1 { color: #c9a96e; font-size: 26px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
     .date { color: #3a4a6a; font-size: 13px; margin-bottom: 48px; }
-    h2 { color: #c9a96e; font-size: 16px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin: 36px 0 12px; }
+    h2 { color: #c9a96e; font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin: 36px 0 12px; }
     p { color: #8a9ab8; font-size: 15px; margin-bottom: 12px; }
-    .highlight {
-      background: #0d0d24;
-      border: 1px solid #1e1e4a;
-      border-left: 3px solid #c9a96e;
-      border-radius: 12px;
-      padding: 20px 24px;
-      margin: 24px 0;
-      color: #c9a96e;
-      font-size: 15px;
-      line-height: 1.7;
-    }
+    .highlight { background: #0d0d24; border: 1px solid #1e1e4a; border-left: 3px solid #c9a96e; border-radius: 12px; padding: 20px 24px; margin: 24px 0; color: #c9a96e; font-size: 15px; line-height: 1.7; }
     footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid #1e1e4a; color: #3a4a6a; font-size: 13px; }
     a { color: #c9a96e; text-decoration: none; }
+    .lang-switch { text-align: right; margin-bottom: 24px; }
+    .lang-btn { color: #3a4a6a; cursor: pointer; font-size: 13px; background: none; border: none; padding: 4px 8px; }
+    .lang-btn.active { color: #c9a96e; }
   </style>
 </head>
 <body>
 
-  <span class="star">✦</span>
-  <h1>Gizlilik Politikası</h1>
-  <div class="date">Son güncelleme: Haziran 2026</div>
-
-  <div class="highlight">
-    My Star, verilerinizi toplamaz, saklamaz veya üçüncü taraflarla paylaşmaz. Hiçbir zaman.
+  <div class="lang-switch">
+    <button class="lang-btn" id="btn-tr" onclick="setLang('tr')">Türkçe</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">English</button>
   </div>
 
-  <h2>Genel İlke</h2>
-  <p>My Star, kişisel bağ ve duygusal anlam üzerine kurulu bir uygulamadır. Sizin yıldızlarınız, sizin anılarınız, sizin hikayeniz — bunlar yalnızca sizindir. Hiçbir veriyi sunucularımıza göndermiyoruz. Hiçbir hesap açmanızı istemiyoruz. Sizi takip etmiyoruz.</p>
+  <span class="star">✦</span>
+  <h1 id="title"></h1>
+  <div class="date" id="date"></div>
 
-  <h2>Konum Verisi</h2>
-  <p>Uygulama, kaydettiğiniz yıldızın gökyüzündeki gerçek konumunu hesaplamak için cihazınızın GPS konumunu kullanır. Bu veri:</p>
-  <p>— Yalnızca cihazınızda, yerel olarak saklanır.</p>
-  <p>— Hiçbir sunucuya gönderilmez.</p>
-  <p>— Üçüncü taraflarla paylaşılmaz.</p>
-  <p>— Pazarlama veya analiz amacıyla kullanılmaz.</p>
+  <div class="highlight" id="highlight"></div>
 
-  <h2>Kamera</h2>
-  <p>Kamera izni, gökyüzünü görüntülemek ve yıldızlarınızı işaretlemek için kullanılır. Hiçbir fotoğraf veya video çekilmez, kaydedilmez veya gönderilmez.</p>
-
-  <h2>Hareket Sensörleri</h2>
-  <p>Telefonunuzun yönünü anlayabilmek için pusula ve ivmeölçer sensörlerine erişilir. Bu veriler yalnızca yıldız yönü hesaplamak için anlık olarak işlenir, hiçbir yerde saklanmaz.</p>
-
-  <h2>Cihazda Saklanan Veriler</h2>
-  <p>Kaydettiğiniz yıldızlar (isim, not, adama ve koordinat bilgisi) yalnızca cihazınızda, iOS'un AsyncStorage sisteminde saklanır. Bu veriler:</p>
-  <p>— Cihazınızı sildiğinizde veya uygulamayı kaldırdığınızda silinir.</p>
-  <p>— Yalnızca sizin erişiminize açıktır.</p>
-  <p>— Bizimle veya başkalarıyla paylaşılmaz.</p>
-
-  <h2>Yıldız Paylaşımı</h2>
-  <p>Bir yıldızı paylaşmayı seçtiğinizde, yıldızın adı ve koordinat bilgisi bir link içinde gönderilir. Bu link yalnızca sizin paylaştığınız kişiye gider. Biz bu linkleri izlemiyoruz veya kaydetmiyoruz.</p>
-
-  <h2>Yasal Uyarı</h2>
-  <p>My Star bir eğlence ve duygusal bağ uygulamasıdır. Gökyüzündeki yıldızlar gerçek astronomik nesnelerdir ve hiçbirinin mülkiyeti edinilemez. Uygulamada bir yıldıza isim vermek, o yıldızın yasal veya bilimsel olarak size ait olduğu anlamına gelmez. Bu, kişisel bir anlam ve hatıra oluşturma deneyimidir.</p>
-
-  <h2>Çocukların Gizliliği</h2>
-  <p>My Star, 13 yaşın altındaki çocuklardan bilerek veri toplamaz. Uygulama tüm yaş grupları için uygundur.</p>
-
-  <h2>Değişiklikler</h2>
-  <p>Bu politikayı güncellememiz gerekirse, bu sayfada yayınlarız. Veri toplama politikamız değişmeyecektir — hiç veri toplamıyoruz.</p>
-
-  <h2>İletişim</h2>
-  <p>Sorularınız için: <a href="mailto:getmystarapp@gmail.com">getmystarapp@gmail.com</a></p>
+  <div id="content"></div>
 
   <footer>
-    <p>© 2026 My Star · <a href="https://getmystar.app">getmystar.app</a></p>
+    <p>© 2026 My Star · <a href="https://getmystar.app">getmystar.app</a> · <a href="mailto:getmystarapp@gmail.com">getmystarapp@gmail.com</a></p>
   </footer>
+
+  <script>
+    const content = {
+      tr: {
+        title: 'Gizlilik Politikası',
+        date: 'Son güncelleme: Haziran 2026',
+        highlight: 'My Star, verilerinizi toplamaz, saklamaz veya üçüncü taraflarla paylaşmaz. Hiçbir zaman.',
+        sections: [
+          ['Genel İlke', 'My Star, kişisel bağ ve duygusal anlam üzerine kurulu bir uygulamadır. Sizin yıldızlarınız, sizin anılarınız, sizin hikayeniz — bunlar yalnızca sizindir. Hiçbir veriyi sunucularımıza göndermiyoruz. Hiçbir hesap açmanızı istemiyoruz. Sizi takip etmiyoruz.'],
+          ['Konum Verisi', 'Uygulama, kaydettiğiniz yıldızın gökyüzündeki gerçek konumunu hesaplamak için cihazınızın GPS konumunu kullanır. Bu veri yalnızca cihazınızda yerel olarak saklanır, hiçbir sunucuya gönderilmez, üçüncü taraflarla paylaşılmaz ve pazarlama amacıyla kullanılmaz.'],
+          ['Kamera', 'Kamera izni, gökyüzünü görüntülemek ve yıldızlarınızı işaretlemek için kullanılır. Hiçbir fotoğraf veya video çekilmez, kaydedilmez veya gönderilmez.'],
+          ['Hareket Sensörleri', 'Telefonunuzun yönünü anlayabilmek için pusula ve ivmeölçer sensörlerine erişilir. Bu veriler yalnızca yıldız yönü hesaplamak için anlık olarak işlenir, hiçbir yerde saklanmaz.'],
+          ['Cihazda Saklanan Veriler', 'Kaydettiğiniz yıldızlar (isim, not, adama ve koordinat bilgisi) yalnızca cihazınızda saklanır. Cihazınızı sıfırladığınızda veya uygulamayı kaldırdığınızda silinir. Bizimle veya başkalarıyla paylaşılmaz.'],
+          ['Yıldız Paylaşımı', 'Bir yıldızı paylaşmayı seçtiğinizde, yıldızın adı ve koordinat bilgisi bir link içinde gönderilir. Bu linki biz izlemiyoruz veya kaydetmiyoruz.'],
+          ['Yasal Uyarı', 'My Star bir eğlence ve duygusal bağ uygulamasıdır. Gökyüzündeki yıldızlar gerçek astronomik nesnelerdir ve hiçbirinin mülkiyeti edinilemez. Uygulamada bir yıldıza isim vermek kişisel bir anlam ve hatıra deneyimidir.'],
+          ['Çocukların Gizliliği', 'My Star, 13 yaşın altındaki çocuklardan bilerek veri toplamaz.'],
+          ['İletişim', 'Sorularınız için: getmystarapp@gmail.com'],
+        ]
+      },
+      en: {
+        title: 'Privacy Policy',
+        date: 'Last updated: June 2026',
+        highlight: 'My Star does not collect, store, or share your data. Ever.',
+        sections: [
+          ['General Principle', 'My Star is an app built on personal connection and emotional meaning. Your stars, your memories, your story — these belong only to you. We send nothing to our servers. We ask you to create no account. We do not track you.'],
+          ['Location Data', 'The app uses your device\'s GPS location to calculate the real sky position of the star you saved. This data is stored only locally on your device, is never sent to any server, is never shared with third parties, and is never used for marketing.'],
+          ['Camera', 'Camera access is used to view the sky and mark your stars. No photo or video is taken, saved, or transmitted.'],
+          ['Motion Sensors', 'The compass and accelerometer are accessed to understand your phone\'s orientation. This data is processed momentarily only to calculate star direction and is never stored anywhere.'],
+          ['Data Stored on Device', 'Your saved stars (name, note, dedication, and coordinates) are stored only on your device. They are deleted when you reset your device or uninstall the app. They are never shared with us or anyone else.'],
+          ['Star Sharing', 'When you choose to share a star, the star\'s name and coordinate data are sent inside a link. We do not track or store these links.'],
+          ['Legal Notice', 'My Star is an entertainment and emotional connection app. Stars in the sky are real astronomical objects and cannot be owned by anyone. Naming a star in My Star is a personal meaning and memory experience.'],
+          ['Children\'s Privacy', 'My Star does not knowingly collect data from children under 13.'],
+          ['Contact', 'For questions: getmystarapp@gmail.com'],
+        ]
+      }
+    };
+
+    function setLang(lang) {
+      const d = content[lang];
+      document.getElementById('title').textContent = d.title;
+      document.getElementById('date').textContent = d.date;
+      document.getElementById('highlight').textContent = d.highlight;
+
+      let html = '';
+      d.sections.forEach(([title, text]) => {
+        html += `<h2>${title}</h2><p>${text}</p>`;
+      });
+      document.getElementById('content').innerHTML = html;
+
+      document.getElementById('btn-tr').className = 'lang-btn' + (lang === 'tr' ? ' active' : '');
+      document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+      document.documentElement.lang = lang;
+    }
+
+    // Tarayıcı diline göre otomatik seç
+    const browserLang = navigator.language?.substring(0, 2) || 'en';
+    setLang(browserLang === 'tr' ? 'tr' : 'en');
+  </script>
 
 </body>
 </html>
