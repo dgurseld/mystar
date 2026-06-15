@@ -28,26 +28,25 @@
     .star-name { color: #c9a96e; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
     .dedication { color: rgba(200,180,255,0.7); font-size: 13px; margin-bottom: 10px; }
     .note { color: #6b8aad; font-size: 13px; font-style: italic; line-height: 1.6; padding: 10px 14px; background: #13132e; border-radius: 10px; margin-top: 8px; }
-
-    /* Yön kartı */
-    .direction-card { background: #0d0d24; border: 1px solid rgba(201,169,110,0.3); border-radius: 20px; padding: 24px; width: 100%; max-width: 360px; text-align: center; margin-bottom: 20px; }
-    .direction-title { color: #6b8aad; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
-    .compass-wrap { position: relative; width: 100px; height: 100px; margin: 0 auto 16px; }
-    .compass-ring { width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.25); position: absolute; top: 0; left: 0; }
-    .compass-ring-inner { width: 70px; height: 70px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.15); position: absolute; top: 15px; left: 15px; }
-    .compass-dot { width: 8px; height: 8px; border-radius: 50%; background: #c9a96e; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-    .compass-arrow { position: absolute; top: 50%; left: 50%; width: 3px; background: #c9a96e; border-radius: 2px; transform-origin: bottom center; }
-    .direction-row { display: flex; justify-content: center; gap: 24px; margin-bottom: 8px; }
-    .direction-item { text-align: center; }
-    .direction-label { color: #3a4a6a; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .direction-value { color: #c9a96e; font-size: 18px; font-weight: 800; }
-    .direction-hint { color: #2a3a5a; font-size: 11px; margin-top: 14px; line-height: 1.6; }
-    .direction-hint a { color: #c9a96e; text-decoration: none; }
-
     .btn { display: block; width: 100%; max-width: 360px; padding: 16px; border-radius: 14px; font-size: 15px; font-weight: 800; text-decoration: none; text-align: center; cursor: pointer; border: none; margin-bottom: 10px; }
     .btn-primary { background: #c9a96e; color: #07071a; }
     .btn-secondary { background: #13132e; color: #c9a96e; border: 1px solid #c9a96e; }
     #status { color: #4a6a8a; font-size: 12px; margin-bottom: 14px; text-align: center; min-height: 18px; }
+
+    /* Yon karti */
+    .direction-card { background: #0d0d24; border: 1px solid rgba(201,169,110,0.2); border-radius: 20px; padding: 24px; width: 100%; max-width: 360px; text-align: center; margin-top: 8px; margin-bottom: 20px; }
+    .direction-title { color: #3a4a6a; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .compass-wrap { position: relative; width: 90px; height: 90px; margin: 0 auto 16px; }
+    .compass-ring { width: 90px; height: 90px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.2); position: absolute; top: 0; left: 0; }
+    .compass-ring-inner { width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.12); position: absolute; top: 15px; left: 15px; }
+    .compass-dot { width: 6px; height: 6px; border-radius: 50%; background: #c9a96e; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .direction-row { display: flex; justify-content: center; gap: 24px; margin-bottom: 8px; }
+    .direction-item { text-align: center; }
+    .direction-label { color: #2a3a5a; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .direction-value { color: #c9a96e; font-size: 15px; font-weight: 800; }
+    .direction-hint { color: #2a3a5a; font-size: 11px; margin-top: 14px; line-height: 1.6; }
+    .direction-hint a { color: #3a5a7a; text-decoration: none; }
+
     .footer { color: #1e2d3d; font-size: 11px; margin-top: 36px; text-align: center; }
     .footer a { color: #3a4a6a; text-decoration: none; }
   </style>
@@ -65,6 +64,7 @@
   <div class="divider"></div>
   <div class="desc" id="desc"></div>
 
+  <!-- 1. Yildiz karti -->
   <div class="card" id="starCard" style="display:none">
     <div class="gift-icon">&#127873;</div>
     <div class="star-name" id="starName"></div>
@@ -72,21 +72,26 @@
     <div class="note" id="note" style="display:none"></div>
   </div>
 
-  <!-- Yon gosterge karti -->
+  <!-- 2. Butonlar - on planda -->
+  <div id="status"></div>
+  <button class="btn btn-primary" id="openBtn" style="display:none" onclick="openInApp()"></button>
+  <a class="btn btn-secondary" id="downloadBtn" href="https://apps.apple.com/app/id000000000" style="display:none"></a>
+
+  <!-- 3. Yon karti - asagida, merak uyandiran ek bilgi -->
   <div class="direction-card" id="directionCard" style="display:none">
     <div class="direction-title" id="directionTitle"></div>
     <div class="compass-wrap">
       <div class="compass-ring"></div>
       <div class="compass-ring-inner"></div>
       <div class="compass-dot"></div>
-      <div class="compass-arrow" id="compassArrow"></div>
+      <div id="compassArrow" style="position:absolute;top:50%;left:50%;width:3px;background:#c9a96e;border-radius:2px;transform-origin:bottom center;"></div>
     </div>
     <div class="direction-row">
       <div class="direction-item">
         <div class="direction-label" id="horizLabel"></div>
         <div class="direction-value" id="horizValue"></div>
       </div>
-      <div style="width:1px;background:rgba(201,169,110,0.15);margin:4px 0"></div>
+      <div style="width:1px;background:rgba(201,169,110,0.12);margin:4px 0"></div>
       <div class="direction-item">
         <div class="direction-label" id="vertLabel"></div>
         <div class="direction-value" id="vertValue"></div>
@@ -94,11 +99,6 @@
     </div>
     <div class="direction-hint" id="directionHint"></div>
   </div>
-
-  <div id="status"></div>
-
-  <button class="btn btn-primary" id="openBtn" style="display:none" onclick="openInApp()"></button>
-  <a class="btn btn-secondary" id="downloadBtn" href="https://apps.apple.com/app/id000000000" style="display:none"></a>
 
   <div class="footer">
     <a href="https://getmystar.app/privacy" id="privacyLink"></a> &middot; <a href="https://getmystar.app/terms" id="termsLink"></a> &middot; getmystar.app &middot; 2026
@@ -108,7 +108,7 @@
     const strings = {
       tr: {
         tagline: 'Sevdiklerinle bag kurmanin en guzel yolu.',
-        desc: 'Bir not, bir gulumse, bir hatırlama...\nBelki de "aklimdaKsin" demenin en zarif yolu.',
+        desc: 'Bir not, bir gulumse, bir hatırlama...\nBelki de "aklimdasin" demenin en zarif yolu.',
         openBtn: 'Uygulamada Ac',
         downloadBtn: "App Store'dan Indir",
         privacy: 'Gizlilik Politikasi',
@@ -120,7 +120,10 @@
         directionTitle: 'YILDIZIN YONU',
         horizLabel: 'YATAY',
         vertLabel: 'DIKEY',
-        directionHint: 'Telefonu bu yone cevir ve gokyuzune bak. Tam AR deneyimi icin <a href="https://apps.apple.com/app/id000000000">GetMyStar</a> uygulamasini indir.',
+        directionHint: 'Telefonu bu yone cevir ve gokyuzune bak.<br>Tam deneyim icin GetMyStar uygulamasini indir.',
+        cardinalDirs: ['Kuzey','Kuzeydogu','Dogu','Guneydogu','Guney','Guneybati','Bati','Kuzeybati'],
+        up: 'yukari',
+        down: 'asagi',
       },
       en: {
         tagline: 'The most beautiful way to connect with the ones you love.',
@@ -136,7 +139,10 @@
         directionTitle: 'YOUR STAR\'S DIRECTION',
         horizLabel: 'HORIZONTAL',
         vertLabel: 'VERTICAL',
-        directionHint: 'Point your phone in this direction and look at the sky. For the full AR experience, download <a href="https://apps.apple.com/app/id000000000">GetMyStar</a>.',
+        directionHint: 'Point your phone this way and look at the sky.<br>Download GetMyStar for the full experience.',
+        cardinalDirs: ['North','Northeast','East','Southeast','South','Southwest','West','Northwest'],
+        up: 'up',
+        down: 'down',
       }
     };
 
@@ -148,22 +154,15 @@
     const az = parseFloat(params.get('az') || '0');
     const alt = parseFloat(params.get('alt') || '0');
     const ded = decodeURIComponent(params.get('ded') || '');
-    const note = decodeURIComponent(params.get('note') || '');
+    const noteVal = decodeURIComponent(params.get('note') || '');
     const ra = params.get('ra') || '';
     const dec = params.get('dec') || '';
 
     const deepLink = 'mystar://find?name=' + encodeURIComponent(name) +
       '&az=' + az + '&alt=' + alt +
       '&ded=' + encodeURIComponent(ded) +
-      '&note=' + encodeURIComponent(note) +
+      '&note=' + encodeURIComponent(noteVal) +
       '&ra=' + ra + '&dec=' + dec;
-
-    function getCardinalDirection(az, lang) {
-      const dirs_tr = ['Kuzey', 'Kuzeydogu', 'Dogu', 'Guneydogu', 'Guney', 'Guneybati', 'Bati', 'Kuzeybati'];
-      const dirs_en = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest'];
-      const dirs = lang === 'tr' ? dirs_tr : dirs_en;
-      return dirs[Math.round(az / 45) % 8];
-    }
 
     function updateDirection(lang) {
       if (!name) return;
@@ -173,41 +172,21 @@
       document.getElementById('vertLabel').textContent = s.vertLabel;
       document.getElementById('directionHint').innerHTML = s.directionHint;
 
-      // Pusula oku - azimuth'a gore don
+      // Pusula oku
+      const arrowLen = 30;
       const arrow = document.getElementById('compassArrow');
-      const arrowLen = 34;
-      const cx = 50, cy = 50;
-      const rad = (az - 90) * Math.PI / 180;
-      const endX = cx + Math.cos(rad) * arrowLen;
-      const endY = cy + Math.sin(rad) * arrowLen;
-      const startX = cx - Math.cos(rad) * 12;
-      const startY = cy - Math.sin(rad) * 12;
-      const angle = az;
-      arrow.style.cssText = `
-        position: absolute;
-        top: 50%; left: 50%;
-        width: 3px;
-        height: ${arrowLen}px;
-        background: #c9a96e;
-        border-radius: 2px;
-        transform-origin: bottom center;
-        transform: translate(-50%, -100%) rotate(${angle}deg);
-        margin-top: 0;
-      `;
+      arrow.style.height = arrowLen + 'px';
+      arrow.style.transform = 'translate(-50%, -100%) rotate(' + az + 'deg)';
 
-      // Yatay yon
-      const cardinal = getCardinalDirection(az, lang);
-      document.getElementById('horizValue').textContent = cardinal + '  ' + Math.round(az) + 'deg';
+      // Yatay
+      const cardinal = s.cardinalDirs[Math.round(az / 45) % 8];
+      document.getElementById('horizValue').textContent = cardinal + ' ' + Math.round(az) + 'deg';
 
-      // Dikey yon
-      const altRounded = Math.round(alt);
-      let vertText = '';
-      if (lang === 'tr') {
-        vertText = altRounded >= 0 ? altRounded + 'deg yukari' : Math.abs(altRounded) + 'deg asagi';
-      } else {
-        vertText = altRounded >= 0 ? altRounded + 'deg up' : Math.abs(altRounded) + 'deg down';
-      }
-      document.getElementById('vertValue').textContent = vertText;
+      // Dikey
+      const altR = Math.round(alt);
+      document.getElementById('vertValue').textContent = altR >= 0
+        ? altR + 'deg ' + s.up
+        : Math.abs(altR) + 'deg ' + s.down;
     }
 
     function setLang(lang) {
@@ -259,10 +238,10 @@
       document.getElementById('directionCard').style.display = 'block';
       document.getElementById('starName').textContent = name;
       document.getElementById('openBtn').style.display = 'block';
-      if (ded) document.getElementById('dedication').textContent = name + ' - ' + ded;
-      if (note) {
+      if (ded) document.getElementById('dedication').textContent = ded;
+      if (noteVal) {
         const el = document.getElementById('note');
-        el.textContent = '"' + note + '"';
+        el.textContent = '"' + noteVal + '"';
         el.style.display = 'block';
       }
       setTimeout(openInApp, 700);
