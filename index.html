@@ -62,7 +62,7 @@
   <a class="btn btn-secondary" id="downloadBtn" href="https://apps.apple.com/app/id000000000" style="display:none" id="downloadBtn"></a>
 
   <div class="footer">
-    <a href="https://getmystar.app/privacy" id="privacyLink"></a> · getmystar.app · 2026
+    <a href="https://getmystar.app/privacy" id="privacyLink"></a> · <a href="https://getmystar.app/terms" id="termsLink"></a> · getmystar.app · 2026
   </div>
 
   <script>
@@ -73,6 +73,7 @@
         openBtn: 'Uygulamada Aç ✦',
         downloadBtn: "App Store'dan İndir",
         privacy: 'Gizlilik Politikası',
+        terms: 'Kullanım Koşulları',
         opening: 'Uygulama açılıyor...',
         notFound: 'Uygulama bulunamadı:',
         retry: 'Tekrar Dene ✦',
@@ -84,6 +85,7 @@
         openBtn: 'Open in App ✦',
         downloadBtn: 'Download on App Store',
         privacy: 'Privacy Policy',
+        terms: 'Terms of Use',
         opening: 'Opening app...',
         notFound: 'App not found:',
         retry: 'Try Again ✦',
@@ -116,6 +118,8 @@
       document.getElementById('tagline').textContent = s.tagline;
       document.getElementById('desc').innerHTML = s.desc.replace('\n', '<br>');
       document.getElementById('privacyLink').textContent = s.privacy;
+      const termsLink = document.getElementById('termsLink');
+      if (termsLink) termsLink.textContent = s.terms;
       document.getElementById('btn-tr').className = 'lang-btn' + (lang === 'tr' ? ' active' : '');
       document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
 
