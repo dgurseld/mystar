@@ -9,46 +9,46 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background: #07071a; color: #fff;
+      background: #060d2e; color: #fff;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       min-height: 100vh; display: flex; flex-direction: column;
       align-items: center; justify-content: center; padding: 40px 24px;
     }
     .lang-switch { position: fixed; top: 20px; right: 20px; display: flex; gap: 8px; }
-    .lang-btn { background: none; border: 1px solid #1e1e4a; color: #3a4a6a; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 600; }
-    .lang-btn.active { border-color: #c9a96e; color: #c9a96e; }
-    .star { font-size: 56px; margin-bottom: 14px; animation: pulse 2s infinite; }
+    .lang-btn { background: none; border: 1px solid #243366; color: #5a6aaa; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 600; }
+    .lang-btn.active { border-color: #e8c478; color: #e8c478; }
+    .star { font-size: 56px; margin-bottom: 14px; animation: pulse 2s infinite; color: #ffe9b8; text-shadow: 0 0 20px #e8c478; }
     @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
-    .app-name { color: #c9a96e; font-size: 26px; font-weight: 800; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; }
-    .tagline { color: #6b8aad; font-size: 14px; margin-bottom: 12px; text-align: center; max-width: 320px; line-height: 1.7; }
-    .desc { color: #3a4a6a; font-size: 13px; text-align: center; max-width: 300px; line-height: 1.8; margin-bottom: 36px; }
-    .divider { width: 32px; height: 1px; background: rgba(201,169,110,0.3); margin: 0 auto 20px; }
-    .card { background: #0d0d24; border: 1px solid #c9a96e; border-radius: 24px; padding: 28px 24px; width: 100%; max-width: 360px; text-align: center; margin-bottom: 20px; }
+    .app-name { color: #e8c478; font-size: 26px; font-weight: 800; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; }
+    .tagline { color: #8aa0d8; font-size: 14px; margin-bottom: 12px; text-align: center; max-width: 320px; line-height: 1.7; }
+    .desc { color: #5a6aaa; font-size: 13px; text-align: center; max-width: 300px; line-height: 1.8; margin-bottom: 36px; }
+    .divider { width: 32px; height: 1px; background: rgba(232,196,120,0.3); margin: 0 auto 20px; }
+    .card { background: #0f1838; border: 1px solid #e8c478; border-radius: 24px; padding: 28px 24px; width: 100%; max-width: 360px; text-align: center; margin-bottom: 20px; }
     .gift-icon { font-size: 32px; margin-bottom: 10px; }
-    .star-name { color: #c9a96e; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .star-name { color: #e8c478; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
     .dedication { color: rgba(200,180,255,0.7); font-size: 13px; margin-bottom: 10px; }
-    .note { color: #6b8aad; font-size: 13px; font-style: italic; line-height: 1.6; padding: 10px 14px; background: #13132e; border-radius: 10px; margin-top: 8px; }
+    .note { color: #8aa0d8; font-size: 13px; font-style: italic; line-height: 1.6; padding: 10px 14px; background: #0a1230; border-radius: 10px; margin-top: 8px; }
     .btn { display: block; width: 100%; max-width: 360px; padding: 16px; border-radius: 14px; font-size: 15px; font-weight: 800; text-decoration: none; text-align: center; cursor: pointer; border: none; margin-bottom: 10px; }
-    .btn-primary { background: #c9a96e; color: #07071a; }
-    .btn-secondary { background: #13132e; color: #c9a96e; border: 1px solid #c9a96e; }
-    #status { color: #4a6a8a; font-size: 12px; margin-bottom: 14px; text-align: center; min-height: 18px; }
+    .btn-primary { background: #e8c478; color: #060d2e; }
+    .btn-secondary { background: #0a1230; color: #e8c478; border: 1px solid #e8c478; }
+    #status { color: #7a8ac8; font-size: 12px; margin-bottom: 14px; text-align: center; min-height: 18px; }
 
     /* Yon karti */
-    .direction-card { background: #0d0d24; border: 1px solid rgba(201,169,110,0.2); border-radius: 20px; padding: 24px; width: 100%; max-width: 360px; text-align: center; margin-top: 8px; margin-bottom: 20px; }
-    .direction-title { color: #3a4a6a; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .direction-card { background: #0f1838; border: 1px solid rgba(232,196,120,0.2); border-radius: 20px; padding: 24px; width: 100%; max-width: 360px; text-align: center; margin-top: 8px; margin-bottom: 20px; }
+    .direction-title { color: #5a6aaa; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
     .compass-wrap { position: relative; width: 90px; height: 90px; margin: 0 auto 16px; }
-    .compass-ring { width: 90px; height: 90px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.2); position: absolute; top: 0; left: 0; }
-    .compass-ring-inner { width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(201,169,110,0.12); position: absolute; top: 15px; left: 15px; }
-    .compass-dot { width: 6px; height: 6px; border-radius: 50%; background: #c9a96e; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .compass-ring { width: 90px; height: 90px; border-radius: 50%; border: 1px solid rgba(232,196,120,0.2); position: absolute; top: 0; left: 0; }
+    .compass-ring-inner { width: 60px; height: 60px; border-radius: 50%; border: 1px solid rgba(232,196,120,0.12); position: absolute; top: 15px; left: 15px; }
+    .compass-dot { width: 6px; height: 6px; border-radius: 50%; background: #e8c478; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
     .direction-row { display: flex; justify-content: center; gap: 24px; margin-bottom: 8px; }
     .direction-item { text-align: center; }
-    .direction-label { color: #2a3a5a; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .direction-value { color: #c9a96e; font-size: 15px; font-weight: 800; }
-    .direction-hint { color: #2a3a5a; font-size: 11px; margin-top: 14px; line-height: 1.6; }
-    .direction-hint a { color: #3a5a7a; text-decoration: none; }
+    .direction-label { color: #5a6aaa; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+    .direction-value { color: #e8c478; font-size: 15px; font-weight: 800; }
+    .direction-hint { color: #5a6aaa; font-size: 11px; margin-top: 14px; line-height: 1.6; }
+    .direction-hint a { color: #7a8ac8; text-decoration: none; }
 
-    .footer { color: #1e2d3d; font-size: 11px; margin-top: 36px; text-align: center; }
-    .footer a { color: #3a4a6a; text-decoration: none; }
+    .footer { color: #243366; font-size: 11px; margin-top: 36px; text-align: center; }
+    .footer a { color: #5a6aaa; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -84,14 +84,14 @@
       <div class="compass-ring"></div>
       <div class="compass-ring-inner"></div>
       <div class="compass-dot"></div>
-      <div id="compassArrow" style="position:absolute;top:50%;left:50%;width:3px;background:#c9a96e;border-radius:2px;transform-origin:bottom center;"></div>
+      <div id="compassArrow" style="position:absolute;top:50%;left:50%;width:3px;background:#e8c478;border-radius:2px;transform-origin:bottom center;"></div>
     </div>
     <div class="direction-row">
       <div class="direction-item">
         <div class="direction-label" id="horizLabel"></div>
         <div class="direction-value" id="horizValue"></div>
       </div>
-      <div style="width:1px;background:rgba(201,169,110,0.12);margin:4px 0"></div>
+      <div style="width:1px;background:rgba(232,196,120,0.12);margin:4px 0"></div>
       <div class="direction-item">
         <div class="direction-label" id="vertLabel"></div>
         <div class="direction-value" id="vertValue"></div>
