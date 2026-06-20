@@ -170,11 +170,11 @@
     let appOpened = false;
 
     const params = new URLSearchParams(window.location.search);
-    const name = decodeURIComponent(params.get('name') || '');
+    const name = decodeURIComponent(params.get('name') || '').slice(0, 40);
     const az = parseFloat(params.get('az') || '0');
     const alt = parseFloat(params.get('alt') || '0');
-    const ded = decodeURIComponent(params.get('ded') || '');
-    const noteVal = decodeURIComponent(params.get('note') || '');
+    const ded = decodeURIComponent(params.get('ded') || '').slice(0, 60);
+    const noteVal = decodeURIComponent(params.get('note') || '').slice(0, 200);
     const ra = params.get('ra') || '';
     const dec = params.get('dec') || '';
 
