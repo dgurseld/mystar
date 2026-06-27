@@ -265,6 +265,9 @@
         el.style.display = 'block';
       }
       setTimeout(openInApp, 700);
+    } else {
+      // Yildiz linki olmadan gelen ziyaretci (bio, reklam, dogrudan) -> indirme butonu goster
+      document.getElementById('downloadBtn').style.display = 'block';
     }
   </script>
 </body>
